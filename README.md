@@ -68,7 +68,9 @@ kubectl apply -f service.yaml
 
 kubectl get nodes 
 kubectl get pods 
-kubectl get services 
+kubectl get services
+
+az group delete --name dev
 
 ```
 
