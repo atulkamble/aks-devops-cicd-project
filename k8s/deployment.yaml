@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: aks-app
-        image: myacrdevops123.azurecr.io/aks-app:v1
+        image: docker.io/atuljkamble/python-flask-app:latest
         ports:
         - containerPort: 5000
