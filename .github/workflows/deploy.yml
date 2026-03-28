@@ -1,0 +1,33 @@
+name: AKS Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Build & Push Docker Image
+      run: |
+        az acr login --name myacrdevops123
+        docker build -t myacrdevops123.azurecr.io/aks-app:v1 .
+        docker push myacrdevops123.azurecr.io/aks-app:v1
+
+    - name: Set AKS Context
+      run: |
+        az aks get-credentials --resource-group aks-rg --name aks-cluster
+
+    - name: Deploy to AKS
+      run: |
+        kubectl apply -f k8s/
