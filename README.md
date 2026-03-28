@@ -6,6 +6,72 @@
 
 ---
 
+```
+dev stack - python flask 
+
+python --version 
+pip --version 
+
+pip install -r requirements.txt 
+python app.py 
+
+http://localhost:5000 
+
+// modern UI << AI 
+
+AzureVM >>
+
+cd Downloads 
+sudo chmod 400 key.pem 
+ssh -i key.pem atul@68.218.153.232
+
+sudo apt update -y 
+sudo apt list --upgradable
+sudo apt upgrade -y 
+sudo apt install git docker.io tree python3-pip python-is-python3 -y 
+git --version 
+docker --version 
+tree --version 
+python --version 
+pip --version
+git config --global user.name "Atul Kamble"
+git config --global user.email "atul_kamble@hotmail.com"
+git config --list 
+sudo systemctl start docker 
+sudo systemctl enable docker 
+sudo systemctl status docker
+sudo usermod -aG docker $USER
+newgrp docker
+sudo docker login -u atuljkamble
+git clone https://github.com/atulkamble/aks-devops-cicd-project.git
+cd aks-devops-cicd-project
+
+sudo docker build -t docker.io/atuljkamble/python-flask-app:latest .
+sudo docker push docker.io/atuljkamble/python-flask-app:latest
+sudo docker images 
+sudo docker run -d -p 5000:5000 atuljkamble/python-flask-app
+sudo docker container ls
+
+
+http://68.218.153.232:5000/
+
+stage 3 >> k8s 
+
+az aks create --resource-group dev --name aks-cluster --node-count 2 --enable-addons monitoring --generate-ssh-keys
+
+az aks get-credentials --resource-group dev --name aks-cluster
+
+cd k8s 
+
+kubectl apply -f deployment.yaml 
+kubectl apply -f service.yaml 
+
+kubectl get nodes 
+kubectl get pods 
+kubectl get services 
+
+```
+
 ## 🎯 Aim
 
 To build a **production-ready CI/CD pipeline** that deploys a containerized application to **Azure Kubernetes Service (AKS)** using DevOps best practices.
